@@ -6,11 +6,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.baseproject.base.extension.parcelable
 import com.example.baseproject.base.model.NetworkException
 import com.example.baseproject.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val mOnNetworkExceptionReceiver by lazy {
         object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                intent?.getParcelableExtra<NetworkException>(BROADCAST_NETWORK_EXCEPTION_EXTRA)
+                intent?.parcelable<NetworkException>(BROADCAST_NETWORK_EXCEPTION_EXTRA)
                     ?.let { networkException ->
                         val backStackEntry = try {
                             // show dialog error
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         // Prevent duplicate Fragments in Back Stack
                         if (backStackEntry == null) {
-//                            // show dialog error
+                            // show dialog error
                         }
                     }
             }
