@@ -56,7 +56,7 @@ object NetworkModule {
         moshiConverterFactory: MoshiConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://api.github.com/")
             .addConverterFactory(moshiConverterFactory)
             .client(okHttpClient)
             .build()
